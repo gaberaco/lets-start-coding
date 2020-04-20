@@ -1,4 +1,3 @@
-
 /*
  * Press a button to 'roll a die' and get the outcome in blinks.
  * Placing loops inside loops is called 'nesting'.
@@ -45,9 +44,4 @@ void loop() {
       } //close the 'for' loop
     } //close the 'if' statement
   } //close the 'while' loop
-} 
-
-                                              
-// (c) 2017 Let's Start Coding. License: www.letsstartcoding.com/bsdlicense
-
-
+}
