@@ -1,4 +1,3 @@
-
 /*
  * In the last lesson, you turned a timer into a clock. Next you'll
  * add in an alarm function to that clock. The 'alarm' will  be a 
@@ -8,22 +7,34 @@
  * variables which will hold the time that the alarm should go
  * off and a check to trigger the alarm when reaching that time.
  */
+ 
+ 
+ 
+ 
+/*
+ *VERY IMPORTANT : THE BUTTON ON PIN A0 IS TO STOP THE ALARM AND THE BUTTON
+ *ON PIN A4 IS TO TOGGLE BACKLIGHT.  ALARM TIME AND REGUALR TIME MUST BE SET
+ *IN ORDER FOR THIS AMAZING CLOCK TO WORK.  YOU CAN TOY AROUND WITH THE MESSSAGE
+ *AND THE BEEPING IF YOU WANT.  THIS IS A BASIC ALARM CLOCK.  TIME SETTING WITH
+ *BUTTONS COMING SOON
+ */
 
 #include "MakerScreenXVI.h"
 
 MakerScreenXVI lcd;
 
-int seconds = 59;//USE THIS
+int seconds = 55;//USE THIS
 int minutes = 59;//AND THIS
-int hours = 1;//AND THIS TO SET THE TIME
-bool AMPM = 1;//DON'T TOUCH THIS
+int hours = 1;//AND THIS TO SET THE TIME.
+bool AMPM = 1;//1 = pm 0 = am
 
 long timer;
 
 // Set the alarm times, currently set for 2:30 PM.
-// Because there isn't a 'second' variable, the alarm will last 1 minute.
-int alarmMinute = 0;
+//Because there isn't a 'second' variable, the alarm will last 1 minute.
+int alarmMinute = 0;//use these to set alarm time
 int alarmHour = 2;
+int alarmSecond = 0;//DO NOT TOUCH THIS
 bool alarmAMPM = 1;
 
 // This variable tells you if you should be showing the alarm message.
@@ -35,6 +46,7 @@ void setup() {
   lcd.backlightOn();
   pinMode(A5, OUTPUT);
   pinMode(A0, INPUT_PULLUP);
+  pinMode(A4, INPUT_PULLUP);
 
   timer = millis();//start the timer as equal to the internal counter.
 }
@@ -43,8 +55,11 @@ void loop() {
     noTone(A5);
     
     if (digitalRead (A0) == LOW) {
-      alarmState==0;
+      alarmState = 0;
   }
+    if (digitalRead (A4) == LOW) {
+        lcd.backlightToggle();
+    }
 
   if (millis() - timer >= 1000){
     seconds = seconds + 1;
@@ -81,7 +96,7 @@ void loop() {
    * This checks if the hours, minutes, and AMPM all match that of 
    * the alarm
     */
-  if ((hours == alarmHour)&&(minutes == alarmMinute)&&(AMPM == alarmAMPM)){
+  if ((hours == alarmHour)&&(minutes == alarmMinute)&&(AMPM == alarmAMPM)&&(seconds == alarmSecond)){
     // If all the current times match the alarm time, set
     // the alarm variable to 1 so that you're in 'alarm state'.
     alarmState = 1;
@@ -124,12 +139,13 @@ void loop() {
   
   // If alarmState is not 0, then display the alarm message:
   else{
+    lcd.backlightOn();
     lcd.clear();
     lcd.print("Wake Up!");
     noTone(A5);
     lcd.backlightToggle();
     lcd.clear();
-    delay(150);
+    delay(100);
     tone(A5, 987);
     lcd.print("Wake Up!");
     lcd.backlightToggle();
