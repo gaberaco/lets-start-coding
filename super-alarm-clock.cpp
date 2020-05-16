@@ -15,7 +15,6 @@
 
 MakerScreenXVI lcd;
 
-//setting the initial time
 int seconds = 00;//this
 int minutes = 00;//and this
 int hours = 12;//and this does not need to be changed
@@ -39,7 +38,7 @@ int setTime = 0;//Which portion of time are you setting? 0=H, 1=M, 2=AMPM
 bool setMode = 0; //0 is time mode, 1 is alarm mode
 
 void setup() {
-  lcd.begin();
+  lcd.begin();   
 
   lcd.backlightOn();
 
@@ -55,6 +54,11 @@ void setup() {
 
 void loop() {
     noTone(0);
+    
+    if ((digitalRead (A0) == LOW)&&(alarmState == 1)&&(digitalRead(6) == LOW)){
+        alarmState = 0;
+        alarmMinute = alarmMinute + 5;
+    }
     
     if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){
         lcd.backlightOff();
@@ -283,15 +287,16 @@ void loop() {
  * is reset by a button press!
  * 
  * Other ideas: 
- * - light displays along with the alarm, 
- * - a backlight that automatically turns on and off at set times 
+ * - light displays along with the alarm, DONE
+ * - a backlight that automatically turns on and off at set times  DONE 
  * - messages that change every hour and print below the time
- * - a combination of the clock with other 
- *   components from Let's Start Coding!
+ * - a combination of the clock with other    NO
+ *   components from Let's Start Coding!      NO
  * 
  * That's the exciting thing about coding: the sky is the 
  * limit, you can make whatever you think up!
- */
+ */ 
+
 
 
 // (c) 2017 Let's Start Coding. License: www.letsstartcoding.com/bsdlicense
