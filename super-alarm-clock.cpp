@@ -59,7 +59,7 @@ void loop() {
     if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){
         lcd.backlightOff();
     }
-    if ((seconds == 0)&&(minutes == 00)&&(hours == 9)&&(AMPM == 0)){
+    if ((seconds == 0)&&(minutes == 00)&&(hours == 8)&&(AMPM == 0)){
         lcd.backlightOn();
     }
     
