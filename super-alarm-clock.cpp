@@ -45,18 +45,25 @@ void setup() {
 
   timer = millis();//set the timer variable equal to the internal counter
 
-  pinMode(2,OUTPUT); //speaker on pin 2 and GND
+  pinMode(0,OUTPUT); //speaker on pin 2 and GND
 
   pinMode(6,INPUT_PULLUP); //Button to select which variable you're changing
-  pinMode(4,INPUT_PULLUP); //Button to change the variable's value
+  pinMode(3,INPUT_PULLUP); //Button to change the variable's value
   pinMode(A5,INPUT_PULLUP);//Button to toggle between alarm and time modes
-  pinMode(A0, INPUT_PULLUP);
+  pinMode(A0, INPUT_PULLUP);//Button to Toggle backlight and stop alarm
 }
 
 void loop() {
-    noTone(2);
+    noTone(0);
     
-    if ((setMode == 0)&&(setTime == 3)&&(digitalRead(4)) == LOW) {
+    if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){
+        lcd.backlightOff();
+    }
+    if ((seconds == 0)&&(minutes == 00)&&(hours == 9)&&(AMPM == 0)){
+        lcd.backlightOn();
+    }
+    
+    if ((setMode == 0)&&(setTime == 3)&&(digitalRead(3)) == LOW) {
            seconds = 0;
     }
     if (digitalRead (A0) == LOW){
@@ -98,8 +105,8 @@ void loop() {
     }
   }
 
-  if (digitalRead(4) == LOW){ //if the 'variable changer button' is pressed...
-    while (digitalRead(4) == LOW){
+  if (digitalRead(3) == LOW){ //if the 'variable changer button' is pressed...
+    while (digitalRead(3) == LOW){
       delay(10);
     }
 
@@ -235,18 +242,18 @@ void loop() {
     if (setTime == 3){
       lcd.print("   SS");    
     }
-    noTone(2);
+    noTone(0);
   }
   
   else{ //This is the 'else' condition for the alarmMode == 0.
     lcd.backlightOn();
     lcd.clear();
     lcd.print("Wake Up!");
-    noTone(2);
+    noTone(0);
     lcd.backlightToggle();
     lcd.clear();
     delay(200);
-    tone(2, 987);
+    tone(0, 987);
     lcd.print("Wake Up!");
     lcd.backlightToggle();
     delay(200);
@@ -288,4 +295,3 @@ void loop() {
 
 
 // (c) 2017 Let's Start Coding. License: www.letsstartcoding.com/bsdlicense
-
