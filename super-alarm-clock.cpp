@@ -21,7 +21,7 @@ int hours = 12;//and this does not need to be changed
 bool AMPM = 1;// and this
 
 
-long timer;
+long timer;  // random comment thing
 
 
 //setting the initial alarm
