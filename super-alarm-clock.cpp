@@ -19,9 +19,9 @@ int seconds = 00;//this
 int minutes = 00;//and this
 int hours = 12;//and this does not need to be changed
 bool AMPM = 1;// and this
+bool alarmOnoff = 0; // 0 is off and 1 is on
 
-
-long timer;  // random comment thing
+long timer;
 
 
 //setting the initial alarm
@@ -49,11 +49,15 @@ void setup() {
   pinMode(6,INPUT_PULLUP); //Button to select which variable you're changing
   pinMode(3,INPUT_PULLUP); //Button to change the variable's value
   pinMode(A5,INPUT_PULLUP);//Button to toggle between alarm and time modes
-  pinMode(A0, INPUT_PULLUP);//Button to Toggle backlight and stop alarm
+  pinMode(A0, INPUT_PULLUP);//Button to Toggle backlight and stop alarm. 
 }
 
-void loop() {
+void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP
     noTone(0);
+    
+    if ((digitalRead (A5) == LOW)&&(digitalRead (6) == LOW)){
+        alarmOnoff = alarmOnoff - 1;
+    }
     
     if ((digitalRead (A0) == LOW)&&(alarmState == 1)&&(digitalRead(6) == LOW)){
         alarmState = 0;
@@ -177,7 +181,7 @@ void loop() {
   }
 
 
-  if ((hours == alarmHour)&&(minutes == alarmMinute)&&(AMPM == alarmAMPM)&&(seconds == alarmSeconds)){
+  if ((hours == alarmHour)&&(minutes == alarmMinute)&&(AMPM == alarmAMPM)&&(seconds == alarmSeconds)&&(alarmOnoff == 1)){
     alarmState = 1;
   } 
 
@@ -209,6 +213,19 @@ void loop() {
       if (AMPM == 1){
         lcd.print(" PM");
       }
+      if (alarmOnoff == 1){
+          lcd.setCursor(0,1);
+          lcd.print("Alarm = On");
+          delay(1);
+          lcd.setCursor(11,0);
+      }
+       if (alarmOnoff == 0){
+          lcd.setCursor(0,1);
+          lcd.print("Alarm = Off");
+          delay(1);
+          lcd.setCursor(11,0);
+      }
+
     }
     
     if (setMode == 1){//setMode == 1 is alarm mode
@@ -227,6 +244,18 @@ void loop() {
       if (alarmAMPM == 1){
         lcd.print(" PM");
       }   
+      if (alarmOnoff == 1){
+          lcd.setCursor(0,1);
+          lcd.print("Alarm = On");
+          delay(1);
+          lcd.setCursor(8,0);
+      }
+      if (alarmOnoff == 0){
+          lcd.setCursor(0,1);
+          lcd.print("Alarm = Off");
+          delay(1);
+          lcd.setCursor(8,0);
+      }
     }
 
     /*
@@ -249,7 +278,7 @@ void loop() {
     noTone(0);
   }
   
-  else{ //This is the 'else' condition for the alarmMode == 0.
+  else{ //This is the 'else' condition for the alarmMode == 0. EEEEE ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM 
     lcd.backlightOn();
     lcd.clear();
     lcd.print("Wake Up!");
@@ -285,14 +314,6 @@ void loop() {
  * You might add in a different time delay for the alarm beeping so that
  * it goes off for 30 seconds instead of a full minute,or even until it 
  * is reset by a button press!
- * 
- * Other ideas: 
- * - light displays along with the alarm, DONE
- * - a backlight that automatically turns on and off at set times  DONE 
- * - messages that change every hour and print below the time
- * - a combination of the clock with other    NO
- *   components from Let's Start Coding!      NO
- * 
  * That's the exciting thing about coding: the sky is the 
  * limit, you can make whatever you think up!
  */ 
