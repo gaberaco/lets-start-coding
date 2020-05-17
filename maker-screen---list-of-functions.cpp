@@ -1,4 +1,4 @@
-// (c) 2020 Gabriel Raco <gaberaco@gmail.com
+// (c) 2020 Gabriel Raco <gaberaco@gmail.com>
 
 /* 
  *  The Makerscreen library makes controlling the 16x2 LED screen
