@@ -215,13 +215,13 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
       }
       if (alarmOnoff == 1){
           lcd.setCursor(0,1);
-          lcd.print("Alarm = On");
+          lcd.print("Alarm:On");
           delay(1);
           lcd.setCursor(11,0);
       }
        if (alarmOnoff == 0){
           lcd.setCursor(0,1);
-          lcd.print("Alarm = Off");
+          lcd.print("Alarm:Off");
           delay(1);
           lcd.setCursor(11,0);
       }
@@ -246,13 +246,13 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
       }   
       if (alarmOnoff == 1){
           lcd.setCursor(0,1);
-          lcd.print("Alarm = On");
+          lcd.print("Alarm:On");
           delay(1);
           lcd.setCursor(8,0);
       }
       if (alarmOnoff == 0){
           lcd.setCursor(0,1);
-          lcd.print("Alarm = Off");
+          lcd.print("Alarm:Off");
           delay(1);
           lcd.setCursor(8,0);
       }
