@@ -40,7 +40,7 @@ bool setMode = 0; //0 is time mode, 1 is alarm mode
 void setup() {
   lcd.begin();   
 
-  lcd.backlightOn();
+
 
   timer = millis();//set the timer variable equal to the internal counter
 
