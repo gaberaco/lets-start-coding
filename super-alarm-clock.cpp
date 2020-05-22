@@ -44,7 +44,7 @@ void setup() {
 
   timer = millis();//set the timer variable equal to the internal counter
 
-  pinMode(0,OUTPUT); //speaker on pin 2 and GND
+  pinMode(1,OUTPUT); //speaker on pin 2 and GND
 
   pinMode(6,INPUT_PULLUP); //Button to select which variable you're changing
   pinMode(3,INPUT_PULLUP); //Button to change the variable's value
@@ -53,7 +53,7 @@ void setup() {
 }
 
 void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP
-    noTone(0);
+    noTone(1);
     
     if ((digitalRead (A5) == LOW)&&(digitalRead (6) == LOW)){
         alarmOnoff = alarmOnoff - 1;
@@ -275,18 +275,18 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
     if (setTime == 3){
       lcd.print("   SS");    
     }
-    noTone(0);
+    noTone(1);
   }
   
   else{ //This is the 'else' condition for the alarmMode == 0. EEEEE ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM ALARM 
     lcd.backlightOn();
     lcd.clear();
     lcd.print("Wake Up!");
-    noTone(0);
+    noTone(1);
     lcd.backlightToggle();
     lcd.clear();
     delay(200);
-    tone(0, 987);
+    tone(1, 987);
     lcd.print("Wake Up!");
     lcd.backlightToggle();
     delay(200);
