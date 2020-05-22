@@ -19,7 +19,7 @@ int seconds = 00;//this
 int minutes = 00;//and this
 int hours = 12;//and this does not need to be changed
 bool AMPM = 1;// and this
-bool alarmOnoff = 0; // 0 is off and 1 is on
+bool alarmOnoff = 1; // 0 is off and 1 is on
 
 long timer;
 
@@ -39,9 +39,6 @@ bool setMode = 0; //0 is time mode, 1 is alarm mode
 
 void setup() {
   lcd.begin();   
-
-
-
   timer = millis();//set the timer variable equal to the internal counter
 
   pinMode(1,OUTPUT); //speaker on pin 2 and GND
@@ -54,11 +51,6 @@ void setup() {
 
 void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP
     noTone(1);
- 
-    if ((alarmState == 1)&&(digitalRead(A0) == LOW)){ // turn the alarm off and stop the alarm
-         alarmState = 0;
-         alarmOnoff = 0;
-    }
         
     if ((digitalRead (A5) == LOW)&&(digitalRead (6) == LOW)) {// turn the alarm on or off
         alarmOnoff = alarmOnoff - 1;
@@ -87,6 +79,7 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
     }
     if (digitalRead (A0) == LOW){                                       //backlight toggle 
         lcd.backlightToggle();
+        alarmState = 0;
     }
     
 
