@@ -54,28 +54,38 @@ void setup() {
 
 void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID LOOP
     noTone(1);
-    
-    if ((digitalRead (A5) == LOW)&&(digitalRead (6) == LOW)){
+ 
+    if ((alarmState == 1)&&(digitalRead(A0) == LOW)){ // turn the alarm off and stop the alarm
+         alarmState = 0;
+         alarmOnoff = 0;
+    }
+        
+    if ((digitalRead (A5) == LOW)&&(digitalRead (6) == LOW)) {// turn the alarm on or off
         alarmOnoff = alarmOnoff - 1;
     }
     
-    if ((digitalRead (A0) == LOW)&&(alarmState == 1)&&(digitalRead(6) == LOW)){
+    if ((digitalRead (A0) == LOW)&&(alarmState == 1)&&(digitalRead(6) == LOW)){//snooze function
         alarmState = 0;
         alarmMinute = alarmMinute + 5;
     }
     
-    if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){
+    if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOff();
+        tone(1, 987);
+        delay(500);
+        noTone(1);
     }
-    if ((seconds == 0)&&(minutes == 00)&&(hours == 8)&&(AMPM == 0)){
+    if ((seconds == 0)&&(minutes == 00)&&(hours == 5)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOn();
+        tone(1, 987);
+        delay(500);
+        noTone(1);
     }
     
-    if ((setMode == 0)&&(setTime == 3)&&(digitalRead(3)) == LOW) {
+    if ((setMode == 0)&&(setTime == 3)&&(digitalRead(3)) == LOW) {     //reset seconds function
            seconds = 0;
     }
-    if (digitalRead (A0) == LOW){
-        alarmState = 0;
+    if (digitalRead (A0) == LOW){                                       //backlight toggle 
         lcd.backlightToggle();
     }
     
