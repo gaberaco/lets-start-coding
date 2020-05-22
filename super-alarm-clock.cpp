@@ -19,7 +19,7 @@ int seconds = 00;//this
 int minutes = 00;//and this
 int hours = 12;//and this does not need to be changed
 bool AMPM = 1;// and this
-bool alarmOnoff = 1; // 0 is off and 1 is on
+bool alarmOnoff = 0; // 0 is off and 1 is on
 
 long timer;
 
@@ -72,13 +72,13 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
     if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOff();
         tone(1, 987);
-        delay(500);
+        delay(1000);
         noTone(1);
     }
     if ((seconds == 0)&&(minutes == 00)&&(hours == 5)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOn();
         tone(1, 987);
-        delay(500);
+        delay(1000);
         noTone(1);
     }
     
