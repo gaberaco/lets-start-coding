@@ -64,13 +64,13 @@ void loop() {  //AHHHH COME GET IT VOID LOOP VOID LOOP VOID LOOP VOID LOOP VOID 
     if ((seconds == 0)&&(minutes == 30)&&(hours == 8)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOff();
         tone(1, 987);
-        delay(1000);
+        delay(500);
         noTone(1);
     }
     if ((seconds == 0)&&(minutes == 00)&&(hours == 5)&&(AMPM == 1)){   //automatic backlight
         lcd.backlightOn();
         tone(1, 987);
-        delay(1000);
+        delay(500);
         noTone(1);
     }
     
