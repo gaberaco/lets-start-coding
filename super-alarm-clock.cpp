@@ -19,7 +19,7 @@ int seconds = 00;//this
 int minutes = 00;//and this
 int hours = 12;//and this does not need to be changed
 bool AMPM = 1;// and this
-bool alarmOnoff = 1; // 0 is off and 1 is on
+bool alarmOnoff = 0; // 0 is off and 1 is on
 
 long timer;
 
